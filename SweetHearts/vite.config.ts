@@ -19,7 +19,9 @@ export default defineConfig({
   root: path.resolve(__dirname, "client"),
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
-    emptyOutDir: true
+    emptyOutDir: true,
+    target: "esnext", // Optional but improves React+TS builds
+    manifest: true,   // Enables manifest.json for SSR if needed
   },
   server: {
     fs: {
@@ -28,3 +30,4 @@ export default defineConfig({
     }
   }
 });
+
