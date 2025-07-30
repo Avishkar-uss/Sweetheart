@@ -3,17 +3,11 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
-// Only import cartographer if running on Replit in dev mode
-const isReplit = process.env.REPL_ID !== undefined;
-const isDev = process.env.NODE_ENV !== "production";
-
 export default defineConfig({
   plugins: [
     react(),
-    runtimeErrorOverlay(),
-    ...(isReplit && isDev
-      ? [require("@replit/vite-plugin-cartographer").cartographer()]
-      : []),
+    runtimeErrorOverlay()
+    // Removed the dynamic `await import(...)` — not supported in non-ESM envs like Render.
   ],
   resolve: {
     alias: {
